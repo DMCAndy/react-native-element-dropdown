@@ -29,6 +29,8 @@ export interface DropdownProps<T> {
   itemTextStyle?: StyleProp<TextStyle>;
   inputSearchStyle?: StyleProp<TextStyle>;
   iconStyle?: StyleProp<ImageStyle>;
+  disabledItemContainerStyle?: StyleProp<ViewStyle>;
+  disabledItemTextStyle?: StyleProp<TextStyle>;
   maxHeight?: number;
   minHeight?: number;
   fontFamily?: string;
@@ -40,6 +42,7 @@ export interface DropdownProps<T> {
   labelField: keyof T;
   valueField: keyof T;
   searchField?: keyof T;
+  disabledField?: keyof T;
   search?: boolean;
   searchPlaceholder?: string;
   disable?: boolean;

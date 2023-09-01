@@ -7,7 +7,7 @@ import AntDesign from '@expo/vector-icons/AntDesign';
 const data = [
   { label: 'Item 1', value: '1', search: 'Item 1' },
   { label: 'Item 2', value: '2', search: 'Item 2' },
-  { label: 'Item 3', value: '3', search: 'Item 3' },
+  { label: 'Item 3', value: '3', search: 'Item 3', disabled: true },
   { label: 'Item 4', value: '4', search: 'Item 4' },
   { label: 'Item 5', value: '5', search: 'Item 5' },
   { label: 'Item 6', value: '6', search: 'Item 6' },
@@ -39,6 +39,8 @@ const DropdownComponent = () => {
         selectedTextStyle={styles.selectedTextStyle}
         inputSearchStyle={styles.inputSearchStyle}
         iconStyle={styles.iconStyle}
+        disabledItemContainerStyle={styles.disabledItemContainerStyle}
+        disabledItemTextStyle={styles.disabledItemTextStyle}
         data={data}
         search
         maxHeight={300}
@@ -46,6 +48,7 @@ const DropdownComponent = () => {
         labelField="label"
         valueField="value"
         searchField="search"
+        disabledField="disabled"
         placeholder={!isFocus ? 'Dropdown 1' : '...'}
         searchPlaceholder="Search..."
         value={value}
@@ -107,5 +110,11 @@ const styles = StyleSheet.create({
   inputSearchStyle: {
     height: 40,
     fontSize: 16,
+  },
+  disabledItemContainerStyle: {
+    backgroundColor: '#d1d5db',
+  },
+  disabledItemTextStyle: {
+    color: '#6b7280',
   },
 });

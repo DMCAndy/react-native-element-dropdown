@@ -53,11 +53,14 @@ const DropdownComponent: <T>(
       itemTextStyle,
       inputSearchStyle,
       iconStyle,
+      disabledItemContainerStyle,
+      disabledItemTextStyle,
       selectedTextProps = {},
       data = [],
       labelField,
       valueField,
       searchField,
+      disabledField,
       value,
       activeColor = '#F6F7F8',
       fontFamily,
@@ -405,6 +408,9 @@ const DropdownComponent: <T>(
       ({ item, index }: { item: any; index: number }) => {
         const isSelected = currentValue && _.get(currentValue, valueField);
         const selected = _.isEqual(_.get(item, valueField), isSelected);
+
+        const isDisabled = disabledField && _.get(item, disabledField);
+
         _.assign(item, { _index: index });
         return (
           <TouchableHighlight
@@ -417,6 +423,7 @@ const DropdownComponent: <T>(
             )}
             underlayColor={activeColor}
             onPress={() => onSelect(item)}
+            disabled={isDisabled}
           >
             <View
               style={StyleSheet.flatten([
@@ -424,6 +431,7 @@ const DropdownComponent: <T>(
                 selected && {
                   backgroundColor: activeColor,
                 },
+                isDisabled && disabledItemContainerStyle,
               ])}
             >
               {renderItem ? (
@@ -434,6 +442,7 @@ const DropdownComponent: <T>(
                     style={StyleSheet.flatten([
                       styles.textItem,
                       itemTextStyle,
+                      isDisabled && disabledItemTextStyle,
                       font(),
                     ])}
                   >
@@ -458,6 +467,9 @@ const DropdownComponent: <T>(
         onSelect,
         renderItem,
         valueField,
+        disabledField,
+        disabledItemContainerStyle,
+        disabledItemTextStyle,
       ]
     );
 
